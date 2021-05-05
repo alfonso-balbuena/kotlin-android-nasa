@@ -1,4 +1,4 @@
-package com.udacity.shoestore
+package com.udacity.asteroidradar
 
 import org.junit.Test
 
