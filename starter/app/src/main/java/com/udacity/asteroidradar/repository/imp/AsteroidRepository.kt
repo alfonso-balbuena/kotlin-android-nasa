@@ -27,11 +27,11 @@ class AsteroidRepository(private val context: Context) : IAsteroidRepository {
     override suspend fun init() {
         _pictureToday.value = service.getImageDay(BuildConfig.API_KEY)
         val nextSevenDays = getNextSevenDaysFormattedDates()
-        val auxList = dataBase.asteroidDao().getPerDay(nextSevenDays.first())
+        val auxList = dataBase.asteroidDao().getPerDay(nextSevenDays.first(),nextSevenDays.last())
         if(auxList.isEmpty()) {
             Timber.d("Fetching data...")
             fetch()
-            asteroidsToday.value = dataBase.asteroidDao().getPerDay(nextSevenDays.first())
+            asteroidsToday.value = dataBase.asteroidDao().getPerDay(nextSevenDays.first(),nextSevenDays.last())
         } else {
             asteroidsToday.value = auxList
             Timber.d("Getting data from database - num of elements: ${auxList.size}")
