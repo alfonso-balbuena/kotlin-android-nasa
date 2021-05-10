@@ -13,6 +13,15 @@ fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
     }
 }
 
+@BindingAdapter("stringStatus")
+fun bindAsteroidStatusContentDescription(imageView: ImageView, isHazardous: Boolean) {
+    if(isHazardous) {
+        imageView.contentDescription = "Is hazardous"
+    } else {
+        imageView.contentDescription = "There is no danger!"
+    }
+}
+
 @BindingAdapter("asteroidStatusImage")
 fun bindDetailsStatusImage(imageView: ImageView, isHazardous: Boolean) {
     if (isHazardous) {

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="asteroid"
+            type="com.udacity.asteroidradar.model.Asteroid" />
+        <variable
+            name="listener"
+            type="com.udacity.asteroidradar.main.AsteroidListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/app_background"
+        android:onClick="@{() -> listener.onClick(asteroid)}"
+        android:layout_marginTop="@dimen/margin_items"
+        >
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_start_item"
+            android:layout_marginTop="@dimen/margin_top_item"
+            android:text="@{asteroid.codename}"
+            app:layout_constraintEnd_toStartOf="@id/image_hazardous"
+            app:layout_constraintHorizontal_weight="9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="68347 (2001 KB67)"
+            style="@style/title" />
+
+        <TextView
+            android:id="@+id/text_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_item"
+            android:text="@{asteroid.closeApproachDate}"
+            app:layout_constraintStart_toStartOf="@id/text_title"
+            app:layout_constraintTop_toBottomOf="@id/text_title"
+            tools:text="2020-02-08"
+            style="@style/detail" />
+
+        <ImageView
+            android:id="@+id/image_hazardous"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/text_date"
+            app:layout_constraintStart_toEndOf="@id/text_title"
+            app:layout_constraintTop_toTopOf="@id/text_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="@string/image_for_hazardous"
+            app:layout_constraintHorizontal_weight="1"
+            app:stringStatus="@{asteroid.potentiallyHazardous}"
+            app:statusIcon = "@{asteroid.potentiallyHazardous}"
+            />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin_top_item"
+            app:layout_constraintTop_toBottomOf ="@id/image_hazardous"
+            app:layout_constraintStart_toStartOf="@id/text_title"
+            app:layout_constraintEnd_toEndOf="@id/image_hazardous"
+            android:background="@color/text_grey"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
